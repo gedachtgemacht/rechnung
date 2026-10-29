@@ -11,7 +11,7 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
   e.waitUntil((async () => {
     const namen = await caches.keys();
-    await Promise.all(namen.filter((n) => n !== CACHE).map((n) => caches.delete(n)));
+    await Promise.all(namen.filter((n) => n.startsWith('rechnung-') && n !== CACHE).map((n) => caches.delete(n)));
     await clients.claim();
   })());
 });

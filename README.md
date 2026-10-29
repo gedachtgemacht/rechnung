@@ -6,6 +6,8 @@ XRechnung and ZUGFeRD are the German e-invoice formats based on the EU standard 
 
 ![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue) ![PWA](https://img.shields.io/badge/PWA-installable-5a4fcf) ![Offline](https://img.shields.io/badge/offline-yes-2e7d32) ![No dependencies](https://img.shields.io/badge/dependencies-none-lightgrey)
 
+**Try it:** https://gedachtgemacht.github.io/rechnung/ (works in any phone browser, install via "Add to Home Screen")
+
 The app interface is in German.
 
 If you are a freelancer or run a small business and write a few invoices a month, e-invoicing often means paying for an accounting subscription. The free online generators ask you to upload customer and revenue data to someone else's server, and the open-source validators are Java tools for developers. rechnung. only does the "write and read e-invoices" part: one form, one XML file, one pre-check. Plain arithmetic, no AI, no server.
