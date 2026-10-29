@@ -1,109 +1,117 @@
 # rechnung.
 
-**E-Rechnung ohne Abo.** rechnung. schreibt XRechnungen, rechnet sie nach und zeigt empfangene als lesbare Rechnung, offline und ohne Konto.
+**E-invoicing without a subscription.** rechnung. writes XRechnung e-invoices, checks the math and shows received ones as a readable invoice. It runs offline in the browser as a PWA, with no account and no server.
 
-Wer als Freiberufler oder Kleinselbstständiger ein paar Rechnungen im Monat schreibt, zahlt für E-Rechnungen oft ein Buchhaltungsabo. Die kostenlosen Online-Generatoren verlangen, dass du Kunden- und Umsatzdaten auf fremde Server lädst, und offene Prüfer sind Java-Werkzeuge für Entwickler. rechnung. macht nur den Teil "E-Rechnung schreiben und lesen": ein Formular, eine XML-Datei, eine Vorprüfung. Reine Rechnung, keine KI, kein Server.
+XRechnung and ZUGFeRD are the German e-invoice formats based on the EU standard EN 16931: the invoice is a structured XML file instead of a PDF, so the recipient's software can read it. rechnung. is for freelancers and small businesses in Germany who write a few invoices a month or need to read one they received.
+
+![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue) ![PWA](https://img.shields.io/badge/PWA-installable-5a4fcf) ![Offline](https://img.shields.io/badge/offline-yes-2e7d32) ![No dependencies](https://img.shields.io/badge/dependencies-none-lightgrey)
+
+The app interface is in German.
+
+If you are a freelancer or run a small business and write a few invoices a month, e-invoicing often means paying for an accounting subscription. The free online generators ask you to upload customer and revenue data to someone else's server, and the open-source validators are Java tools for developers. rechnung. only does the "write and read e-invoices" part: one form, one XML file, one pre-check. Plain arithmetic, no AI, no server.
 
 <p align="center">
-  <img src="bilder/1-uebersicht.png" width="240" alt="">
+  <img src="bilder/1-uebersicht.png" width="240" alt="Phone view: list of three sample invoices with number, customer, date, gross amount and status">
 </p>
 
 <p align="center">
-  <img src="bilder/2-breit.png" width="640" alt="">
+  <img src="bilder/2-breit.png" width="640" alt="Desktop view: the same invoice list in two columns with the tab bar at the bottom">
 </p>
 
-## Warum
+## Why
 
-Seit 2025 müssen Unternehmen in Deutschland E-Rechnungen empfangen können, später auch ausstellen. Eine E-Rechnung ist XML, das man ohne Werkzeug nicht lesen und von Hand nicht sicher schreiben kann. rechnung. ersetzt kein Buchhaltungsprogramm wie sevDesk oder Lexware Office. Es ersetzt nur das, was du brauchst, wenn du ein paar Rechnungen im Monat schreibst oder eine empfangene prüfen willst.
+Since 2025, businesses in Germany must be able to receive e-invoices, and later they must issue them too. An e-invoice is XML that you cannot read without a tool and cannot safely write by hand. rechnung. does not replace accounting software such as sevDesk or Lexware Office. It covers only what you need when you write a few invoices a month or want to check one you received.
 
-Kleinunternehmer dürfen weiter Papier- oder PDF-Rechnungen schreiben. rechnung. behauptet keine Pflicht und sagt dir nicht, ob du Kleinunternehmer bist.
+Small businesses under the German small-business rule (Kleinunternehmer, § 19 UStG) may keep sending paper or PDF invoices. rechnung. does not claim any obligation and does not tell you whether you qualify as a Kleinunternehmer.
 
-## Funktionen
+## Features
 
-- **Schreiben:** Formular für eine Rechnung, Ausgabe als XRechnung 3.0 in der Syntax CII (`.xml`, Dateiname aus der Rechnungsnummer)
-- **Absenderprofil:** Firma, Anschrift, Steuernummer oder USt-IdNr., Kontakt, E-Mail, IBAN. Einmal anlegen, für jede Rechnung genutzt
-- **Kunden:** kleine Liste mit Anschrift, E-Mail und Käuferreferenz (Leitweg-ID)
-- **Positionen** mit Menge, Einheit (Stück, Stunde, Tag, Pauschale), Einzelpreis netto und Steuersatz 19, 7 oder 0 (Kleinunternehmer nach § 19 UStG)
-- **Nachrechnen** live im Formular: Zeilensummen, Steuer je Satz, Netto, Brutto nach EN 16931
-- **Rechnungsnummer** fortlaufend mit einstellbarem Präfix, von Hand überschreibbar
-- **Lesen:** XRechnung oder ZUGFeRD-XML (CII) und XRechnung UBL per Datei öffnen oder hineinziehen. Anzeige als normale Rechnung, Summen werden nachgerechnet, Abweichungen markiert. Felder, die rechnung. nicht kennt, erscheinen als Rohliste statt zu verschwinden. Das rohe XML lässt sich aufklappen
-- **Vorprüfung** ausgewählter Pflichtfeld- und Rechenregeln mit Regel-ID und deutschem Hinweis
-- **Drucken** der lesbaren Ansicht über den Browser, auch als PDF
-- **Export und Import** aller Daten als JSON-Datei
-- Beispieldaten zum Ausprobieren, mit einem Klick entfernbar
-- Hell und dunkel, funktioniert offline, installierbar als App
+- **Write:** a form for one invoice, output as XRechnung 3.0 in CII syntax (`.xml`, file name taken from the invoice number)
+- **Sender profile:** company, address, tax number or VAT ID (Steuernummer or USt-IdNr.), contact, email, IBAN. Set it up once, used for every invoice
+- **Customers:** a small list with address, email and buyer reference (Leitweg-ID, the routing ID German public authorities require)
+- **Line items** with quantity, unit (piece, hour, day, flat fee), net unit price and VAT rate 19, 7 or 0 % (Kleinunternehmer under § 19 UStG)
+- **Live totals** in the form: line totals, tax per rate, net and gross according to EN 16931
+- **Invoice number** sequential with a configurable prefix, can be overwritten by hand
+- **Read:** open or drop in an XRechnung or ZUGFeRD XML file (CII) or an XRechnung UBL file. It is shown as a normal invoice, the totals are recalculated and differences are marked. Fields rechnung. does not know are shown as a raw list instead of disappearing. The raw XML can be expanded
+- **Pre-check** of selected mandatory-field and calculation rules, each with its rule ID and a German hint
+- **Print** the readable view through the browser, also as PDF
+- **Export and import** of all data as a JSON file
+- Sample data to try it out, removable with one click
+- Light and dark mode, works offline, installable as an app
 
-## Grenzen
+## Limits
 
-Das gehört zur Ehrlichkeit dazu:
+Being honest about these is part of the tool:
 
-- **Die Prüfung ist eine Vorprüfung, keine amtliche Validierung.** rechnung. prüft eine Auswahl der Regeln (Pflichtfelder, Summen, Steuerkategorien, Zahlungsanweisung, Käuferreferenz, Steuernummer, elektronische Adressen), aber kein vollständiges Schematron. Eine Datei kann die Vorprüfung bestehen und trotzdem vom Empfänger abgelehnt werden. Für Verbindlichkeit nimm den KoSIT-Validator.
-- **Die geschriebenen Dateien wurden bisher nicht durch den KoSIT-Validator geprüft.** Das ist als manueller Schritt vor einer Freigabe vorgesehen und noch offen.
-- **Das Lesen ist nur mit eigenen Beispielen getestet.** Getestet sind zwei selbst geschriebene Dateien (CII mit Zuschlag, UBL mit Nachlass) und der Round-Trip der eigenen CII-Dateien. Offizielle Beispiele der KoSIT-Testsuite liegen noch nicht bei. Ob Dateien anderer Software richtig gelesen werden, ist deshalb **noch nicht getestet**.
-- **Kein ZUGFeRD-PDF.** Es wird kein PDF/A-3 mit eingebettetem XML erzeugt und kein XML aus PDFs gelesen. Der Druck ist ein normales PDF.
-- Beim Schreiben keine Nachlässe und Zuschläge, keine Gutschriften, keine Abschlagsrechnungen, keine Fremdwährung (nur EUR), kein Reverse Charge. Beim Lesen werden Nachlässe und Zuschläge auf Dokumentebene mitgerechnet.
-- Keine Buchhaltung, keine Mahnungen, kein Versand, keine Peppol-Anbindung, keine Bankanbindung.
-- Keine Steuerberatung.
-- XRechnung bekommt regelmäßig neue Versionen. Die verwendete Kennung (3.0) steht an genau einer Stelle in `logik.js`.
+- **The check is a pre-check, not an official validation.** rechnung. checks a selection of the rules (mandatory fields, totals, tax categories, payment instructions, buyer reference, tax number, electronic addresses), but not the full Schematron rule set. A file can pass the pre-check and still be rejected by the recipient. For a binding result, use the KoSIT validator (the official XRechnung validator).
+- **The generated files have not yet been run through the KoSIT validator.** This is planned as a manual step before a release and is still open.
+- **Reading is only tested with self-written examples.** Tested are two self-written files (CII with a charge, UBL with an allowance) and the round trip of rechnung.'s own CII files. Official examples from the KoSIT test suite are not included yet. Whether files from other software are read correctly is therefore **not tested yet**.
+- **No ZUGFeRD PDF.** It does not create a PDF/A-3 with embedded XML and does not read XML out of PDFs. Printing gives a normal PDF.
+- When writing: no allowances or charges, no credit notes, no partial or advance invoices, no foreign currency (EUR only), no reverse charge. When reading, document-level allowances and charges are included in the calculation.
+- No bookkeeping, no payment reminders, no sending, no Peppol connection, no bank connection.
+- No tax advice.
+- XRechnung gets new versions regularly. The version identifier used (3.0) is in exactly one place in `logik.js`.
 
-## Datenschutz
+## Privacy
 
-Nichts verlässt dein Gerät. rechnung. hat keinen Server, kein Konto, keine Analyse, keine Werbung und lädt nichts aus dem Netz nach, auch keine Schriften. Profil, Kunden und Rechnungen liegen nur in der lokalen Datenbank deines Browsers (IndexedDB). Dateien, die du liest, werden im Browser verarbeitet. Der XML-Parser lehnt DOCTYPE und eigene Entities ab, damit eine fremde Datei nichts nachladen kann.
+Nothing leaves your device. rechnung. has no server, no account, no analytics, no ads and loads nothing from the network, not even fonts. Profile, customers and invoices are stored only in your browser's local database (IndexedDB). Files you open are processed in the browser. The XML parser rejects DOCTYPE and custom entities, so a foreign file cannot load anything.
 
-Weil die Daten nur im Browser liegen: Wer die Websitedaten löscht, löscht auch seine Rechnungen. Mach deshalb ab und zu einen Export als JSON.
+Because the data lives only in the browser: if you clear the site data, your invoices are gone too. Export a JSON backup now and then.
 
-## Installation
+## Install
 
-rechnung. ist eine statische Web-App. Es gibt keinen Build-Schritt und keine Abhängigkeiten.
+rechnung. is a static web app. There is no build step and there are no dependencies.
 
-1. Den Ordner `rechnung/` auf einen beliebigen statischen Host legen (eigener Webspace, GitHub Pages, Netlify, ein Raspberry Pi). Für die Installation als App ist HTTPS nötig.
-2. Die Adresse im Browser öffnen.
-3. Im Browsermenü **Zum Startbildschirm hinzufügen** oder **Installieren** wählen. Danach startet rechnung. wie eine App und funktioniert auch ohne Netz.
+1. Put the `rechnung/` folder on any static host (your own web space, GitHub Pages, Netlify, a Raspberry Pi). Installing it as an app needs HTTPS.
+2. Open the address in your browser.
+3. In the browser menu choose **Zum Startbildschirm hinzufügen** ("Add to Home Screen") or **Installieren** ("Install"). After that rechnung. starts like an app and also works without a network.
 
-Lokal testen:
+Test locally:
 
 ```
 cd rechnung
 python3 -m http.server 8000
 ```
 
-Dann `http://localhost:8000` im Browser öffnen.
+Then open `http://localhost:8000` in your browser.
 
-Tests (Node ab Version 18, keine Pakete nötig):
+Tests (Node 18 or later, no packages needed):
 
 ```
 node --test
 ```
 
-## Wie gerechnet wird
+## How the math works
 
-Alle Funktionen stehen als reine Funktionen in `logik.js`. Gerechnet wird mit `BigInt` in festen Nachkommastellen, nie mit Gleitkommazahlen. Beträge, Mengen und Preise werden als Dezimal-Strings gespeichert.
+All functions are pure functions in `logik.js`. Calculations use `BigInt` with fixed decimal places, never floating point. Amounts, quantities and prices are stored as decimal strings.
 
-**1. Zeile (BT-131).** Menge × Einzelpreis, kaufmännisch auf 2 Stellen gerundet (ab 5 weg von null). Der Einzelpreis selbst wird nicht gerundet.
+**1. Line (BT-131).** Quantity × unit price, rounded commercially to 2 decimals (half away from zero). The unit price itself is not rounded.
 
-**2. Steuer je Satz (BT-116, BT-117).** Basis = Summe der Zeilen mit diesem Satz (beim Lesen minus Nachlässe, plus Zuschläge dieses Satzes). Steuer = Basis × Satz ÷ 100, auf 2 Stellen gerundet.
+**2. Tax per rate (BT-116, BT-117).** Base = sum of the lines with this rate (when reading: minus allowances, plus charges for this rate). Tax = base × rate ÷ 100, rounded to 2 decimals.
 
-**3. Summen.** Netto (BT-109) = Summe der Zeilen (BT-106) minus Nachlässe plus Zuschläge. Steuer gesamt (BT-110) = Summe der Steuerbeträge. Brutto (BT-112) = Netto + Steuer. Zahlbarer Betrag = Brutto minus Vorauszahlung (BT-115).
+**3. Totals.** Net (BT-109) = sum of lines (BT-106) minus allowances plus charges. Total tax (BT-110) = sum of the tax amounts. Gross (BT-112) = net + tax. Amount due = gross minus prepaid amount (BT-115).
 
-**4. Kleinunternehmer.** Bei 0 % schreibt rechnung. die Steuerkategorie E mit dem Befreiungsgrund `Kein Ausweis von Umsatzsteuer, da Kleinunternehmer gemäß § 19 UStG`. Bei 19 und 7 % gilt Kategorie S.
+**4. Kleinunternehmer.** At 0 %, rechnung. writes tax category E with the exemption reason `Kein Ausweis von Umsatzsteuer, da Kleinunternehmer gemäß § 19 UStG` ("No VAT shown, small business under § 19 UStG"). At 19 and 7 %, category S applies.
 
-**5. Format.** CII nach UN/CEFACT D16B, Typ 380, Währung EUR, Zahlungsart 58 (SEPA-Überweisung), Einheiten H87, HUR, DAY und LS.
+**5. Format.** CII according to UN/CEFACT D16B, type 380, currency EUR, payment means 58 (SEPA credit transfer), units H87, HUR, DAY and LS.
 
-**Testvektoren zum Nachrechnen** (alle in `test-calc.js`):
+**Test vectors to check by hand** (all in `test-calc.js`):
 
-1. 10 × 85,00 (19 %) und 1 × 49,90 (7 %): Zeilen 850,00 und 49,90, Steuer 161,50 und 3,493 gerundet 3,49, Netto 899,90, Steuer 164,99, Brutto **1064,89**.
-2. Kleinunternehmer, 3 × 33,33 (0 %): Zeile 99,99, Steuer 0,00, Brutto **99,99**.
-3. Beim Lesen, 1,5 × 12,345 = 18,5175 gerundet 18,52 (19 %), Dokumentnachlass 2,00: Basis 16,52, Steuer 3,1388 gerundet 3,14, Brutto **19,66**.
-4. Rundung an der Grenze: 1 × 0,125 wird 0,13, 1 × −0,125 wird −0,13.
+1. 10 × 85.00 (19 %) and 1 × 49.90 (7 %): lines 850.00 and 49.90, tax 161.50 and 3.493 rounded to 3.49, net 899.90, tax 164.99, gross **1064.89**.
+2. Kleinunternehmer, 3 × 33.33 (0 %): line 99.99, tax 0.00, gross **99.99**.
+3. When reading, 1.5 × 12.345 = 18.5175 rounded to 18.52 (19 %), document allowance 2.00: base 16.52, tax 3.1388 rounded to 3.14, gross **19.66**.
+4. Rounding at the boundary: 1 × 0.125 becomes 0.13, 1 × −0.125 becomes −0.13.
 
-**Geprüfte Regeln** (Vorprüfung, jeweils mit Regel-ID und deutschem Hinweis): BR-01 bis BR-11 und BR-16 (Kopf, Verkäufer, Käufer, Anschriften, mindestens eine Position), BR-CO-10, -13, -14, -15, -16 und -25 (Summen stimmen), BR-S-08 und -09, BR-E-08, -09 und -10 (Steuerbasis und Befreiungsgrund), BR-DE-1 bis -9 (Zahlungsanweisung, Verkäuferkontakt, Anschrift), BR-DE-15 (Käuferreferenz), BR-DE-16 (Steuernummer oder USt-IdNr.), BR-DE-19 (IBAN-Prüfsumme), BT-34 und BT-49 (elektronische Adressen).
+**Rules checked** (pre-check, each with rule ID and a German hint): BR-01 to BR-11 and BR-16 (header, seller, buyer, addresses, at least one line item), BR-CO-10, -13, -14, -15, -16 and -25 (totals add up), BR-S-08 and -09, BR-E-08, -09 and -10 (tax base and exemption reason), BR-DE-1 to -9 (payment instructions, seller contact, address), BR-DE-15 (buyer reference), BR-DE-16 (tax number or VAT ID), BR-DE-19 (IBAN checksum), BT-34 and BT-49 (electronic addresses).
 
-Die Tests prüfen die Vektoren, Rundung, den XML-Parser (Entities, Namensräume, abgelehnter DOCTYPE), die Pflichtelemente und die Schema-Reihenfolge der geschriebenen Datei, den Round-Trip Schreiben und Lesen, das Lesen der Beispiele und den Export und Import.
+The tests cover the vectors, rounding, the XML parser (entities, namespaces, rejected DOCTYPE), the mandatory elements and schema order of the generated file, the write-and-read round trip, reading the examples, and export and import.
 
-## Lizenz
+## License
 
-GNU Affero General Public License v3.0 (AGPL-3.0), siehe `LICENSE`.
+GNU Affero General Public License v3.0 (AGPL-3.0), see `LICENSE`.
+
+**Deutsch:** rechnung. schreibt und liest E-Rechnungen (XRechnung, ZUGFeRD-XML) im Browser, rechnet nach und prüft vor, offline, ohne Konto und ohne Abo, für Freiberufler und Kleinunternehmer.
 
 ---
 
-**gedacht.gemacht.** Kleine, ehrliche Software. Alles bleibt auf deinem Gerät.
+**gedacht.gemacht.** Small, honest software. Everything stays on your device. · [More projects](https://github.com/gedachtgemacht)
