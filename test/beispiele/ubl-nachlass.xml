@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Selbst geschriebenes Beispiel im Aufbau einer XRechnung 3.0 UBL.
+     Kein offizielles KoSIT-Beispiel. Alle Namen und Nummern sind erfunden.
+     Enthält Testvektor 3: Rundung und Dokumentnachlass. -->
+<ubl:Invoice xmlns:ubl="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+             xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+             xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
+  <cbc:ID>UBL-2026-17</cbc:ID>
+  <cbc:IssueDate>2026-10-12</cbc:IssueDate>
+  <cbc:DueDate>2026-10-26</cbc:DueDate>
+  <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+  <cbc:Note>Danke f&#252;r den Auftrag &amp; bis bald.</cbc:Note>
+  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
+  <cbc:BuyerReference>04011000-12345-34</cbc:BuyerReference>
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="EM">rechnung&#64;lieferant.example</cbc:EndpointID>
+      <cac:PostalAddress>
+        <cbc:StreetName>Lieferweg 3</cbc:StreetName>
+        <cbc:CityName>Beispielburg</cbc:CityName>
+        <cbc:PostalZone>11111</cbc:PostalZone>
+        <cac:Country><cbc:IdentificationCode>DE</cbc:IdentificationCode></cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>DE123456789</cbc:CompanyID>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity><cbc:RegistrationName>Lieferant Beispiel GmbH</cbc:RegistrationName></cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:Name>Max Muster</cbc:Name>
+        <cbc:Telephone>0123 98765</cbc:Telephone>
+        <cbc:ElectronicMail>max&#64;lieferant.example</cbc:ElectronicMail>
+      </cac:Contact>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="EM">eingang&#64;amt.example</cbc:EndpointID>
+      <cac:PostalAddress>
+        <cbc:StreetName>Amtsplatz 1</cbc:StreetName>
+        <cbc:CityName>Probestadt</cbc:CityName>
+        <cbc:PostalZone>22222</cbc:PostalZone>
+        <cac:Country><cbc:IdentificationCode>DE</cbc:IdentificationCode></cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity><cbc:RegistrationName>Beispielamt Probestadt</cbc:RegistrationName></cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  <cac:PaymentMeans>
+    <cbc:PaymentMeansCode>58</cbc:PaymentMeansCode>
+    <cac:PayeeFinancialAccount>
+      <cbc:ID>DE02120300000000202051</cbc:ID>
+      <cbc:Name>Lieferant Beispiel GmbH</cbc:Name>
+    </cac:PayeeFinancialAccount>
+  </cac:PaymentMeans>
+  <cac:PaymentTerms><cbc:Note>Zahlbar innerhalb von 14 Tagen.</cbc:Note></cac:PaymentTerms>
+  <cac:AllowanceCharge>
+    <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+    <cbc:AllowanceChargeReason>Treuenachlass</cbc:AllowanceChargeReason>
+    <cbc:Amount currencyID="EUR">2.00</cbc:Amount>
+    <cac:TaxCategory>
+      <cbc:ID>S</cbc:ID>
+      <cbc:Percent>19</cbc:Percent>
+      <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+    </cac:TaxCategory>
+  </cac:AllowanceCharge>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="EUR">3.14</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxableAmount currencyID="EUR">16.52</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="EUR">3.14</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>19</cbc:Percent>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="EUR">18.52</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="EUR">16.52</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="EUR">19.66</cbc:TaxInclusiveAmount>
+    <cbc:AllowanceTotalAmount currencyID="EUR">2.00</cbc:AllowanceTotalAmount>
+    <cbc:PayableAmount currencyID="EUR">19.66</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="HUR">1.5</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="EUR">18.52</cbc:LineExtensionAmount>
+    <cac:Item>
+      <cbc:Name>Beratung</cbc:Name>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID>S</cbc:ID>
+        <cbc:Percent>19</cbc:Percent>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
+      <cac:AdditionalItemProperty>
+        <cbc:Name>Farbe</cbc:Name>
+        <cbc:Value>blau</cbc:Value>
+      </cac:AdditionalItemProperty>
+    </cac:Item>
+    <cac:Price><cbc:PriceAmount currencyID="EUR">12.345</cbc:PriceAmount></cac:Price>
+  </cac:InvoiceLine>
+</ubl:Invoice>
